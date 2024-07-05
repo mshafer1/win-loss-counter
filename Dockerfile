@@ -1,4 +1,4 @@
-FROM node:22.4-bookworm-slim as frontend_built
+FROM node:22.4-bookworm-slim AS frontend_built
 
 COPY ./frontend/win-loss-counter /app/frontend/
 
@@ -19,7 +19,7 @@ RUN npm run build
 # CMD ["supervisord"]
 
 
-FROM python:3.9-bullseye as python_installed
+FROM python:3.9-bullseye AS python_installed
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -55,7 +55,7 @@ ENV PATH /app/_venv/bin:$PATH
 RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime
 
 
-FROM python_installed as node_installed
+FROM python_installed AS node_installed
 
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -89,7 +89,7 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 
 
-FROM python_installed as app_setup
+FROM python_installed AS app_setup
 
 RUN rm -rf /app/frontend
 
