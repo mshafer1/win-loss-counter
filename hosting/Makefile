@@ -3,6 +3,7 @@
 include ../.env
 
 SOCKET := /run/uwsgi/$(DOMAIN)/socket.sock
+WEBSOCKET := /run/uwsgi/$(DOMAIN)/socket_websocket.sock
 
 export DOMAIN
 
@@ -32,6 +33,7 @@ objects/install: host_nginx_config objects/
 	sed \
 	-e "s/'{domain_name}'/$(DOMAIN)/g" \
 	-e "s;'{SOCKET}';$(SOCKET);g" \
+	e "s;'{WEBSOCKET}';$(WEBSOCKET);g" \
 	-e "s;'{PORT}';$(PORT);g" \
 	$< > objects/_temp_test_config && \
 	cp -f objects/_temp_test_config /etc/nginx/sites-enabled/$(DOMAIN)

@@ -1,7 +1,3 @@
-upstream flask_upstream {
-  server http://localhost:'{PORT}'
-}
-
 server {
     server_name '{domain_name}';
     listen 80;
@@ -9,13 +5,16 @@ server {
     location / {
       include uwsgi_params;
       client_max_body_size 26M;
-      uwsgi_pass http://flask_upstream;
+      uwsgi_pass unix:'{SOCKET}';
     }
 
     location /socket.io {
+        include uwsgi_params;
         proxy_pass http://flask_upstream;
         proxy_http_version 1.1;
         proxy_set_header Upgrade websocket;
         proxy_set_header Connection upgrade;
+        client_max_body_size 26M;
+        uwsgi_pass unix:'{WEBSOCKET}';
     }
 }

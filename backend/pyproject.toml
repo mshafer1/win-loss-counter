@@ -12,6 +12,7 @@ flask-socketio = "^5.3.6"
 python-decouple = "^3.8"
 flask-cors = "^4.0.1"
 uwsgi = {version="^2.0.26", platform="linux"}
+supervisor = {version="^4.2.5", platform="linux"}
 
 [tool.poetry.group.dev.dependencies]
 ni-python-styleguide = "^0.4.6"

@@ -103,4 +103,6 @@ COPY ./hosting/config /app/config/
 
 RUN mkdir -p /app/uwsgi
 
-CMD ["/app/_venv/bin/uwsgi", "--ini", "/app/config/wsgi.ini"]
+COPY ./hosting/config/supervisord.conf /etc/supervisord.conf
+
+CMD ["supervisord"]
