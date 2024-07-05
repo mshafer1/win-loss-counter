@@ -101,6 +101,7 @@ COPY ./backend /app/backend/
 
 COPY ./hosting/config /app/config/
 
+RUN mkdir -p /var/log/uwsgi_socket/
 RUN mkdir -p /app/uwsgi
 
 COPY ./hosting/config/supervisord.conf /etc/supervisord.conf

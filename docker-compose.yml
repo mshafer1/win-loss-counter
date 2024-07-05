@@ -11,4 +11,6 @@ services:
       - .env
     ports:
       - '127.0.0.1:${PORT}:${PORT}'
+    volumes:
+      - './logs:/var/log/uwsgi'
     restart: unless-stopped
