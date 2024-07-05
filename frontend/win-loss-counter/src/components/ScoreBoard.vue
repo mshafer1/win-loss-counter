@@ -1,7 +1,9 @@
 <template>
-  <div class="w3-container rowdies-bold w3-xxxlarge w3-center">
-    <div v-if="!connection_ready">Connecting...</div>
-    <div v-else class=""> 
+  <div>
+    <div v-if="!connection_ready">
+      Connecting...
+    </div>
+    <div v-else> 
       <!-- background-color: #181818; -->
       <span v-text="wins"></span> <span>/</span> <span v-text="losses"> </span>
       <br />

@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  web:
+    container_name: image_web_${DOMAIN}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - DOMAIN=${DOMAIN:-localhost}
+    env_file:
+      - .env
+    volumes:
+      - /run/uwsgi/${DOMAIN}:/app/uwsgi
+    restart: unless-stopped
