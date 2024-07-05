@@ -32,6 +32,7 @@ objects/install: host_nginx_config objects/
 	sed \
 	-e "s/'{domain_name}'/$(DOMAIN)/g" \
 	-e "s;'{SOCKET}';$(SOCKET);g" \
+	-e "s;'{PORT}';$(PORT);g" \
 	$< > objects/_temp_test_config && \
 	cp -f objects/_temp_test_config /etc/nginx/sites-enabled/$(DOMAIN)
 	nginx -t

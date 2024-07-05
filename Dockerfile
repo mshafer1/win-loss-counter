@@ -48,7 +48,6 @@ WORKDIR /app/backend
 COPY ./backend/pyproject.toml /app/backend/pyproject.toml
 COPY ./backend/poetry.lock /app/backend/poetry.lock
 
-# -E uWSGI
 RUN . /app/_venv/bin/activate && /app/_poetry_venv/bin/poetry install --no-dev
 
 ENV PATH /app/_venv/bin:$PATH

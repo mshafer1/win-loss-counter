@@ -9,6 +9,6 @@ services:
         - DOMAIN=${DOMAIN:-localhost}
     env_file:
       - .env
-    volumes:
-      - /run/uwsgi/${DOMAIN}:/app/uwsgi
+    ports:
+      - '127.0.0.1:${PORT}:${PORT}'
     restart: unless-stopped
