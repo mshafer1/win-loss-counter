@@ -14,7 +14,7 @@ _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 
 MODULE_LOGGER = logging.getLogger(__name__)
 MODULE_DIR = pathlib.Path(__file__).parent
-FRONTEND_PATH = MODULE_DIR / ".." / ".." / "frontend"
+FRONTEND_PATH = MODULE_DIR / ".." / ".." / "frontend" / "win-loss-counter"
 DIST_PATH = (FRONTEND_PATH / "dist").resolve()
 
 logging.warning("Dist path is: %s", DIST_PATH)
@@ -69,6 +69,7 @@ def test_disconnect():
 
 @app.route("/", defaults={"path": "index.html"}, methods=["GET"])
 def get_index(path):
+    print("Handling root path")
     return flask.send_from_directory(DIST_PATH, path)
 
 
