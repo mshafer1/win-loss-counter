@@ -10,7 +10,7 @@ import flask
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send
 
-_DEBUG = decouple.config("DEBUG", cast=bool)
+_DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 
 MODULE_LOGGER = logging.getLogger(__name__)
 MODULE_DIR = pathlib.Path(__file__).parent
