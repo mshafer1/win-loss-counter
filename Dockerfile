@@ -1,8 +1,8 @@
 FROM node:22.4-bookworm-slim AS frontend_built
 
-COPY ./frontend/win-loss-counter /app/frontend/
+COPY ./frontend/win-loss-counter /app/frontend/win-loss-counter
 
-WORKDIR /app/frontend
+WORKDIR /app/frontend/win-loss-counter
 
 # RUN . $NVM_DIR/nvm.sh && npm install --omit dev --no-fund
 
