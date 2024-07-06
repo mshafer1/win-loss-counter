@@ -122,7 +122,7 @@ def get_dir(path):
         flask_login.login_user(user)
     if "." in parsed:
         return flask.send_from_directory(DIST_PATH, path)
-    else:
+    else:  # page routes like /control or / are handled via the frontend router in index.html
         return flask.send_from_directory(DIST_PATH, "index.html")
 
 
