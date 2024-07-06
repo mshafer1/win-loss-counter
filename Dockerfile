@@ -4,8 +4,6 @@ COPY ./frontend/win-loss-counter /app/frontend/win-loss-counter
 
 WORKDIR /app/frontend/win-loss-counter
 
-# RUN . $NVM_DIR/nvm.sh && npm install --omit dev --no-fund
-
 RUN rm -rf dist node_modules && npm install --no-fund --no-audit
 
 RUN npm run build
