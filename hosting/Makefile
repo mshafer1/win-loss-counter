@@ -1,5 +1,5 @@
 
-# provides HTTP_PORT, HTTPS_PORT, and DOMAIN
+# provides PORT and DOMAIN
 include ../.env
 
 SOCKET := /run/uwsgi/$(DOMAIN)/socket.sock
@@ -8,6 +8,10 @@ export DOMAIN
 
 ifeq ($(DOMAIN),)
 	$(error DOMAIN must be set in enviroment or ../.env file)
+endif
+
+ifeq ($(PORT),)
+	$(error PORT must be set in enviroment or ../.env file)
 endif
 
 all:
