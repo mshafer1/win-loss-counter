@@ -105,6 +105,7 @@ RUN mkdir -p /var/log/uwsgi/
 RUN mkdir -p /var/log/uwsgi_socket/
 RUN mkdir -p /app/uwsgi
 
-COPY ./hosting/config/supervisord.conf /etc/supervisord.conf
+# COPY ./hosting/config/supervisord.conf /etc/supervisord.conf
 
-CMD ["supervisord"]
+# CMD ["supervisord"]
+CMD ["uwsgi", "--ini", "/app/config/wsgi.ini"]
