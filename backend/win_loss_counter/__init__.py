@@ -21,9 +21,11 @@ logging.warning("Dist path is: %s", DIST_PATH)
 
 app = flask.Flask(__name__)
 
+
 class Score:
     def __init__(self):
         self.wins = self.losses = 0
+
 
 _score = Score()
 
@@ -41,6 +43,7 @@ if _DEBUG:
 app.config["SECRET_KEY"] = "secret!"
 socketio = SocketIO(app, **extra_socket_args)
 
+
 @socketio.on("message")
 def handle_message(data):
     print("received message: " + data)
@@ -50,8 +53,8 @@ def handle_message(data):
 def handle_new_score(json_):
     data = json.loads(json_)
     print("received json: " + str(json_), type(json_), data)
-    _score.wins = data['wins']
-    _score.losses = data['losses']
+    _score.wins = data["wins"]
+    _score.losses = data["losses"]
     emit("newScore", data, broadcast=True)
 
 
@@ -65,7 +68,9 @@ def test_connect(auth):
 def test_disconnect():
     print("Client disconnected")
 
+
 # region: web-server
+
 
 @app.route("/", defaults={"path": "index.html"}, methods=["GET"])
 def get_index(path):
@@ -81,5 +86,6 @@ def get_dir(path):
         return flask.send_from_directory(DIST_PATH, path)
     else:
         return flask.send_from_directory(DIST_PATH, "index.html")
+
 
 # endregion
