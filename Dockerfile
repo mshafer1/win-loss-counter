@@ -10,15 +10,6 @@ RUN rm -rf dist node_modules && npm install --no-fund --no-audit
 
 RUN npm run build
 
-# COPY ./image/config/wsgi.ini /app/config/wsgi.ini
-# COPY ./image/config/supervisord.conf /etc/supervisord.conf
-# RUN mkdir --parent /var/log/uwsgi_song_selector
-
-# ARG DOMAIN
-# ENV DOMAIN $DOMAIN
-# CMD ["supervisord"]
-
-
 FROM python:3.9-bullseye AS python_installed
 
 RUN apt-get update && apt-get upgrade -y
@@ -31,7 +22,7 @@ RUN apt-get install -y \
 # envsubst
     gettext-base
 
-RUN python -m pip install -U pip supervisor
+RUN python -m pip install -U pip
 
 # setup project venv
 RUN mkdir --parent /app/_venv
@@ -105,7 +96,4 @@ RUN mkdir -p /var/log/uwsgi/
 RUN mkdir -p /var/log/uwsgi_socket/
 RUN mkdir -p /app/uwsgi
 
-# COPY ./hosting/config/supervisord.conf /etc/supervisord.conf
-
-# CMD ["supervisord"]
 CMD ["uwsgi", "--ini", "/app/config/wsgi.ini"]

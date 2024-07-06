@@ -780,23 +780,6 @@ files = [
 ]
 
 [[package]]
-name = "supervisor"
-version = "4.2.5"
-description = "A system for controlling process state under UNIX"
-optional = false
-python-versions = "*"
-files = [
-    {file = "supervisor-4.2.5-py2.py3-none-any.whl", hash = "sha256:2ecaede32fc25af814696374b79e42644ecaba5c09494c51016ffda9602d0f08"},
-    {file = "supervisor-4.2.5.tar.gz", hash = "sha256:34761bae1a23c58192281a5115fb07fbf22c9b0133c08166beffc70fed3ebc12"},
-]
-
-[package.dependencies]
-setuptools = "*"
-
-[package.extras]
-testing = ["pytest", "pytest-cov"]
-
-[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -959,4 +942,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "1e00c9b1987181c6d5f3c6cbff588edfc32e4b9134cbd6f7e3c4bbc48e5f7651"
+content-hash = "c47b54cfe56a9b1a5e5010ddd4979dd85f61b157cf5730f162e9e715034362e3"
