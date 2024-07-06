@@ -87,7 +87,7 @@ def handle_new_score(json_):
     print("received json: " + str(json_), type(json_), data)
     _score.wins = data["wins"]
     _score.losses = data["losses"]
-    flask_socketio.emit("newScore", data, broadcast=True)
+    flask_socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses), broadcast=True)
 
 
 @socketio.on("connect")
