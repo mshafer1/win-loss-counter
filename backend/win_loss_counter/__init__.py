@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 import decouple
 import flask
 from flask_cors import CORS
-from flask_socketio import SocketIO, emit, send
+import flask_socketio
 import flask_login
 
 _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
@@ -50,7 +50,7 @@ if _DEBUG:
     }
 
 app.config["SECRET_KEY"] = "secret!"
-socketio = SocketIO(app, **extra_socket_args)
+socketio = flask_socketio.SocketIO(app, **extra_socket_args)
 
 _USERS = {}
 
@@ -80,13 +80,13 @@ def handle_new_score(json_):
     print("received json: " + str(json_), type(json_), data)
     _score.wins = data["wins"]
     _score.losses = data["losses"]
-    emit("newScore", data, broadcast=True)
+    flask_socketio.emit("newScore", data, broadcast=True)
 
 
 @socketio.on("connect")
 def test_connect(auth):
     print("Connected")
-    emit("newScore", dict(wins=_score.wins, losses=_score.losses))
+    flask_socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses))
 
 
 @socketio.on("disconnect")
