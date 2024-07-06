@@ -13,6 +13,4 @@ services:
       - '127.0.0.1:${PORT}:${PORT}'
     volumes:
       - './logs/uwsgi:/var/log/uwsgi'
-      - './logs/uwsgi_socket:/var/log/uwsgi_socket'
-      - /run/uwsgi/${DOMAIN}:/app/uwsgi
     restart: unless-stopped

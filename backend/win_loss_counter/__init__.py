@@ -52,7 +52,7 @@ if _DEBUG:
         "enginio_logger": True,
     }
 
-app.config["SECRET_KEY"] = "secret!"
+app.config["SECRET_KEY"] = decouple.config("FLASK_SECRET_KEY")
 socketio = flask_socketio.SocketIO(app, **extra_socket_args)
 
 _USERS = {}
@@ -84,7 +84,7 @@ def handle_message(data):
 @authenticated_only
 def handle_new_score(json_):
     data = json.loads(json_)
-    print("received json: " + str(json_), type(json_), data)
+    print("received json: " + str(json_))
     _score.wins = data["wins"]
     _score.losses = data["losses"]
     flask_socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses), broadcast=True)

@@ -14,7 +14,7 @@ if (typeof(socket_addr) == "undefined") {
     socket_addr = "/";
 }
 
-console.log("Domain / host", socket_addr)
+console.log("Domain (/host port):", socket_addr)
 
 app.use(new VueSocketIO({
     debug: true,
