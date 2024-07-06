@@ -1,14 +1,17 @@
 """Module for serving the backend"""
 
+import functools
 import json
 import logging
 import pathlib
+import uuid
 from urllib.parse import urlparse
 
 import decouple
 import flask
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send
+import flask_login
 
 _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 
@@ -21,11 +24,17 @@ logging.warning("Dist path is: %s", DIST_PATH)
 
 app = flask.Flask(__name__)
 
+_login_manager = flask_login.LoginManager()
+_login_manager.init_app(app)
 
 class Score:
     def __init__(self):
         self.wins = self.losses = 0
 
+class User(flask_login.UserMixin):
+    def __init__(self, id_) -> None:
+        super().__init__()
+        self.id = id_
 
 _score = Score()
 
@@ -43,6 +52,21 @@ if _DEBUG:
 app.config["SECRET_KEY"] = "secret!"
 socketio = SocketIO(app, **extra_socket_args)
 
+_USERS = {}
+
+@_login_manager.user_loader
+def load_user(user_id):
+    return _USERS.get(user_id)
+
+def authenticated_only(f):
+    @functools.wraps(f)
+    def wrapped(*args, **kwargs):
+        if not flask_login.current_user.is_authenticated:
+            print("User is not authenticated, closing connection")
+            flask_socketio.disconnect()
+        else:
+            return f(*args, **kwargs)
+    return wrapped
 
 @socketio.on("message")
 def handle_message(data):
@@ -50,6 +74,7 @@ def handle_message(data):
 
 
 @socketio.on("new score")
+@authenticated_only
 def handle_new_score(json_):
     data = json.loads(json_)
     print("received json: " + str(json_), type(json_), data)
@@ -82,6 +107,12 @@ def get_index(path):
 def get_dir(path):
     parsed = urlparse(path).path
     print("Requested path is", path, "parsed to", parsed)
+    if path == "control" and not flask_login.current_user.is_authenticated:
+        print("User loaded control page and is not logged in. Assigning a uuid and logging in.")
+        user_id = uuid.uuid4().hex
+        user = User(user_id)
+        _USERS[user_id] = user
+        flask_login.login_user(user)
     if "." in parsed:
         return flask.send_from_directory(DIST_PATH, path)
     else:
