@@ -8,12 +8,12 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.9"
 flask = "^3.0.3"
-flask-socketio = "^5.3.6"
-python-decouple = "^3.8"
 flask-cors = "^4.0.1"
-uwsgi = {version="^2.0.26", platform="linux"}
-supervisor = {version="^4.2.5", platform="linux"}
+flask-socketio = "^5.3.6"
 gevent = {version="^24.2.1", platform="linux"}
+python-decouple = "^3.8"
+supervisor = {version="^4.2.5", platform="linux"}
+uwsgi = {version="^2.0.26", platform="linux"}
 
 [tool.poetry.group.dev.dependencies]
 ni-python-styleguide = "^0.4.6"
