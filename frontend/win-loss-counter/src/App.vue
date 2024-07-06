@@ -1,11 +1,9 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import ScoreBoard from './components/ScoreBoard.vue'
 </script>
 
 <template>
   <div class="w3-container rowdies-bold w3-xxxlarge w3-center">
-    
     <RouterView />
   </div>
 </template>
