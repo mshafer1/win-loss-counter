@@ -9,9 +9,9 @@ from urllib.parse import urlparse
 
 import decouple
 import flask
-from flask_cors import CORS
-import flask_socketio
 import flask_login
+import flask_socketio
+from flask_cors import CORS
 
 _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 
@@ -27,14 +27,17 @@ app = flask.Flask(__name__)
 _login_manager = flask_login.LoginManager()
 _login_manager.init_app(app)
 
+
 class Score:
     def __init__(self):
         self.wins = self.losses = 0
+
 
 class User(flask_login.UserMixin):
     def __init__(self, id_) -> None:
         super().__init__()
         self.id = id_
+
 
 _score = Score()
 
@@ -54,9 +57,11 @@ socketio = flask_socketio.SocketIO(app, **extra_socket_args)
 
 _USERS = {}
 
+
 @_login_manager.user_loader
 def load_user(user_id):
     return _USERS.get(user_id)
+
 
 def authenticated_only(f):
     @functools.wraps(f)
@@ -66,7 +71,9 @@ def authenticated_only(f):
             flask_socketio.disconnect()
         else:
             return f(*args, **kwargs)
+
     return wrapped
+
 
 @socketio.on("message")
 def handle_message(data):
