@@ -9,9 +9,16 @@ import router from './router'
 const app = createApp(App)
 app.use(router)
 
+var socket_addr = import.meta.env.VITE_DOMAIN
+if (typeof(socket_addr) == "undefined") {
+    socket_addr = "/";
+}
+
+console.log("Domain (/host port):", socket_addr)
+
 app.use(new VueSocketIO({
     debug: true,
-    connection: SocketIO('http://localhost:5000', {path: ''}),
+    connection: SocketIO(socket_addr, {path: ''}),
     // vuex: {
         
     // }

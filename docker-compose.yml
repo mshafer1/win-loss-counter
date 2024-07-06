@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  web:
+    container_name: image_web_${DOMAIN}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - DOMAIN=${DOMAIN:-localhost}
+    env_file:
+      - .env
+    ports:
+      - '127.0.0.1:${PORT}:${PORT}'
+    volumes:
+      - './logs/uwsgi:/var/log/uwsgi'
+    restart: unless-stopped
