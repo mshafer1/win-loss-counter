@@ -66,7 +66,7 @@ def load_user(user_id):
 def authenticated_only(f):
     @functools.wraps(f)
     def wrapped(*args, **kwargs):
-        if not flask_login.current_user.is_authenticated:
+        if not flask_login.current_user.is_authenticated and not _DEBUG:
             print("User is not authenticated, closing connection")
             flask_socketio.disconnect()
         else:
