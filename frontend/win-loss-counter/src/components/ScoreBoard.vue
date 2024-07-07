@@ -1,7 +1,7 @@
 <template>
   <div class="red circle w3-padding w3-display-container">
-    <div v-if="!connection_ready" class="w3-display-middle">
-      Getting scores...
+    <div v-if="!connection_ready" class="w3-display-middle title-text">
+      Loading scores...
     </div>
     <div v-else> 
       <div class="w3-display-top title-text" style="">
