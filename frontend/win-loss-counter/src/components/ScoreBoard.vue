@@ -7,12 +7,12 @@
       <div class="w3-display-top title-text" style="">
         <p>Victory Counter</p>
       </div>
-      <div class="w3-display-middle body-text super-large-text indie-flower-regular">
+      <div class="w3-display-middle body-text super-large-text rock-salt-regular" style="font-size: 100pt;">
         <div class="w3-display-middle" v-text="wins" style="margin-top: -65px; margin-left: -80px;"></div> 
-        <div style="font-size: 200pt; font-weight: 50; margin-top: 60px;" class="w3-display-middle">/</div>
+        <div style="font-size: 200pt; font-weight: 50; margin-top: -10px;" class="w3-display-middle">/</div>
         <div class="w3-display-middle" v-text="losses" style="margin-top: 60px; margin-left: 110px;"> </div>
-        <div class="label-text w3-display-middle" style="top: 70px; left: -75px; font-weight: bold">W</div>
-        <div class="label-text w3-display-middle" style="top: -50px; left: 110px; font-weight: bold">L</div>
+        <div class="label-text w3-display-middle" style="top: 70px; left: -110px; font-weight: bold">W</div>
+        <div class="label-text w3-display-middle" style="top: -70px; left: 130px; font-weight: bold">L</div>
       </div>
     </div>
   </div>

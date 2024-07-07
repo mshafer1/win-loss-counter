@@ -60,21 +60,21 @@ a,
   font-size: 72pt;
 }
 
-.title-text {
+.title-text, .title-text > p {
   color: #ffdb00;
   -webkit-text-stroke: 5px #0052a0;
-  /* font-weight: 800; */
   margin-top: -60px;
   font-size: 56pt;
   line-height: 56pt;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 700!important;
+
 }
 
 .label-text {
   color: #4bcaf9;
   position: absolute;
-  font-size: 24pt;
+  font-size: 36pt;
 }
 
 .body-text {
