@@ -12,7 +12,7 @@ I opted to build it with websockets for the low-latency updates and to simplify 
 
 ## License
 
-Win-Loss-Counter is published under the [MIT License](License.md) and is free as-in-coffee (i.e., completely free to use, but I'm not going to say "no" to some coffee money as a thank you).
+Win-Loss-Counter is published under the [MIT License](LICENSE) and is free as-in-coffee (i.e., completely free to use, but I'm not going to say "no" to some coffee money as a thank you).
 
 ## Hosting
 
