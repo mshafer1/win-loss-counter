@@ -3,13 +3,13 @@ defineEmits(['change'])
 </script>
 
 <template>
-  <div class="w3-xxlarge">
+  <div class="w3-xxlarge text-color">
     <p v-text="label"></p>
     <span class="w3-hide-small w3-hide-medium">
       <input class="w3-input w3-xxlarge" type="number" v-model="value" @input="onChanged()" />
     </span>
-    <span class="w3-row-flex w3-hide-large">
-      <div class="w3-col s8 w3-border w3-border-black large-text">
+    <span class="w3-row w3-hide-large">
+      <div class="w3-col s8 responsive-border large-text">
       {{ value }}
       </div>
       <div class="w3-col s4">
