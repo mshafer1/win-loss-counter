@@ -1,5 +1,6 @@
 """Module for serving the backend"""
 
+import atexit
 import functools
 import json
 import logging
@@ -12,6 +13,7 @@ import flask
 import flask_login
 import flask_socketio
 from flask_cors import CORS
+from apscheduler.schedulers.background import BackgroundScheduler
 
 _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
 
@@ -58,6 +60,14 @@ socketio = flask_socketio.SocketIO(app, **extra_socket_args)
 _USERS = {}
 
 
+def _interval_update():
+    """ Function for test purposes. """
+    publish_score()
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(_interval_update,'interval',seconds=10)
+sched.start()
+
 @_login_manager.user_loader
 def load_user(user_id):
     return _USERS.get(user_id)
@@ -87,6 +97,9 @@ def handle_new_score(json_):
     print("received json: " + str(json_))
     _score.wins = data["wins"]
     _score.losses = data["losses"]
+    publish_score()
+
+def publish_score():
     flask_socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses), broadcast=True)
 
 
