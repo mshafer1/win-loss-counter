@@ -9,6 +9,12 @@ import uuid
 from urllib.parse import urlparse
 
 import decouple
+
+# region must be before flask is brought in
+import eventlet
+eventlet.monkey_patch(thread=True, time=True)
+# end-region
+
 import flask
 import flask_login
 import flask_socketio
@@ -100,7 +106,7 @@ def handle_new_score(json_):
     publish_score()
 
 def publish_score():
-    flask_socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses), broadcast=True)
+    socketio.emit("newScore", dict(wins=_score.wins, losses=_score.losses))
 
 
 @socketio.on("connect")

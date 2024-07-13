@@ -15,6 +15,7 @@ gevent = {version="^24.2.1", platform="linux"}
 python-decouple = "^3.8"
 uwsgi = {version="^2.0.26", platform="linux"}
 apscheduler = "^3.10.4"
+eventlet = "^0.36.1"
 
 [tool.poetry.group.dev.dependencies]
 ni-python-styleguide = "^0.4.6"
