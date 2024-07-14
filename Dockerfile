@@ -94,4 +94,5 @@ RUN mkdir -p /var/log/uwsgi/
 RUN mkdir -p /var/log/uwsgi_socket/
 RUN mkdir -p /app/uwsgi
 
-CMD ["uwsgi", "--ini", "/app/config/wsgi.ini"]
+# CMD ["uwsgi", "--ini", "/app/config/wsgi.ini"]
+CMD ["python", "-m", "win_loss_counter"]

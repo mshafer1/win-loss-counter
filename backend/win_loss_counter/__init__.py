@@ -11,8 +11,8 @@ from urllib.parse import urlparse
 import decouple
 
 # region must be before flask is brought in
-import eventlet
-eventlet.monkey_patch(thread=True, time=True)
+# import eventlet
+# eventlet.monkey_patch(thread=True, time=True)
 # end-region
 
 import flask
@@ -71,8 +71,8 @@ def _interval_update():
     publish_score()
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(_interval_update,'interval',seconds=10)
-sched.start()
+# sched.add_job(_interval_update,'interval',seconds=10)
+# sched.start()
 
 @_login_manager.user_loader
 def load_user(user_id):
