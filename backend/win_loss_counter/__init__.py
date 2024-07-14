@@ -22,6 +22,7 @@ from flask_cors import CORS
 from apscheduler.schedulers.background import BackgroundScheduler
 
 _DEBUG = decouple.config("DEBUG", cast=bool, default=False)
+_PORT = decouple.config("PORT", cast=int, default=5000)
 
 MODULE_LOGGER = logging.getLogger(__name__)
 MODULE_DIR = pathlib.Path(__file__).parent
