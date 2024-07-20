@@ -6,9 +6,9 @@ import NumberInputVue from './NumberInput.vue'
   <div class="w3-xxlarge rowdies-bold">
     <div v-if="!connection_ready">Connecting...</div>
     <div v-else>
-      <NumberInputVue :label="'Wins'" v-on:change="updateScore" v-bind:valueParent="wins" />
+      <NumberInputVue :label="'Potato'" v-on:change="updateScore" v-bind:valueParent="wins" />
       <br />
-      <NumberInputVue :label="'Losses'" v-on:change="updateScore" v-bind:valueParent="losses" />
+      <NumberInputVue :label="'Dalma'" v-on:change="updateScore" v-bind:valueParent="losses" />
     </div>
   </div>
 </template>
