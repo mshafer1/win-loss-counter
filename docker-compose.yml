@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   web:
-    container_name: image_web_${DOMAIN}
+    container_name: ${COMPOSE_PROJECT_NAME}_image_web_${DOMAIN}
     build:
       context: ./
       dockerfile: Dockerfile
