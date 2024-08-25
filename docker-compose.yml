@@ -14,3 +14,9 @@ services:
     volumes:
       - './logs/uwsgi:/var/log/uwsgi'
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: ".5"
+          memory: "100M"
+    memswap_limit: .5G
