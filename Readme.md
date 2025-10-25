@@ -13,7 +13,7 @@ I opted to build it with websockets for the low-latency updates and to simplify 
 ## License
 
 Win-Loss-Counter is published under the [MIT License](LICENSE) and is completely free to use. If you would like to say thank you, you could 
-<a href="https://buymeacoffee.com/mshafer1"><img src="images/bmc-button_smaller.png" style="max-height: 3ex; max-width: 100px;"></a>
+<a href="https://buymeacoffee.com/makerByNight"><img src="images/bmc-button_smaller.png" style="max-height: 3ex; max-width: 100px;"></a>
 
 ## Hosting
 
